@@ -52,36 +52,7 @@ services:
     networks:
       - spring-cloud-microservices
 
-  common-data-service:
-    build:
-      context: .
-      dockerfile: ./server/common-data-service/Dockerfile-dev
-    container_name: common-data-service-container
-    restart: always
-    depends_on:
-      - mysql-db
-      - redis-cache
-      - react-ui
-    environment:
-      - DB_HOST=mysql-db
-      - DB_PORT=${DB_PORT}
-      - DB_USER=${DB_USER}
-      - DB_PASS=${DB_PASS}
-      - DB_SCHEMA=${DB_SCHEMA}
-      - ACTIVE_PROFILE=${ACTIVE_PROFILE}
-      - PORT=${COMMON_DATA_SERVICE_PORT}
-      - REDIS_PASSWORD=${REDIS_PASSWORD}
-      - REDIS_HOST=redis-cache
-      - REDIS_PORT=${REDIS_PORT}
-      - REACT_CLIENT_URL=${REACT_CLIENT_URL}
-    links:
-      - mysql-db:mysql
-    expose:
-      - ${COMMON_DATA_SERVICE_PORT}
-    ports:
-      - ${COMMON_DATA_SERVICE_PORT}:${COMMON_DATA_SERVICE_PORT}
-    networks:
-      - spring-cloud-microservices
+  
 
   search-suggestion-service:
     build:
@@ -107,32 +78,7 @@ services:
     networks:
       - spring-cloud-microservices
 
-  payment-service:
-    build:
-      context: .
-      dockerfile: ./server/payment-service/Dockerfile-dev
-    container_name: payment-service-container
-    restart: always
-    depends_on:
-      - mysql-db
-      - redis-cache
-      - react-ui
-    environment:
-      - DB_HOST=mysql-db
-      - DB_PORT=${DB_PORT}
-      - DB_USER=${DB_USER}
-      - DB_PASS=${DB_PASS}
-      - DB_SCHEMA=${DB_SCHEMA}
-      - ACTIVE_PROFILE=${ACTIVE_PROFILE}
-      - PORT=${PAYMENT_SERVICE_PORT}
-    links:
-      - mysql-db:mysql
-    expose:
-      - ${PAYMENT_SERVICE_PORT}
-    ports:
-      - ${PAYMENT_SERVICE_PORT}:${PAYMENT_SERVICE_PORT}
-    networks:
-      - spring-cloud-microservices
+ 
 
   react-ui:
     build:
