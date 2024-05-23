@@ -11,7 +11,7 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY ./client/package*.json ./
 
-RUN npm install -g install
+RUN npm install
 
 # Bundle app source
 COPY . .
