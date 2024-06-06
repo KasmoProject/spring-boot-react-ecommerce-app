@@ -11,7 +11,7 @@ export REACT_APP_PAYMENT_SERVICE_URL="http://$PUBLIC_IP:9050"
 export REACT_APP_SEARCH_SUGGESTION_SERVICE_URL="http://$PUBLIC_IP:10000"
 
 
-# Ensure the target directory exists
+# Ensure the target directory exists- sumana
 mkdir -p /usr/src/app/client
 
 # Write the environment variables to a .env file (optional, if needed by the application)
