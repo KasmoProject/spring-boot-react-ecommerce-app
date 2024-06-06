@@ -2,8 +2,11 @@
 
 echo "Starting set-env.sh script..."
 
-# Fetch the public IP address from EC2 metadata
-PUBLIC_IP=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
+
+TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+
+# Fetch the public IP using the metadata service token
+PUBLIC_IP=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/public-ip)
 
 echo "Public IP: $PUBLIC_IP"
 
