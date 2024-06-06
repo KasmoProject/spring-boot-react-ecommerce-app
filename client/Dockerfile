@@ -26,9 +26,11 @@ COPY . .
 COPY client/set-env.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/set-env.sh
 
+# Confirm the script execution with debug logs
+RUN /usr/local/bin/set-env.sh && echo "Set-env.sh script executed successfully."
+
 # Initiate npm start - changed by Sumana
-ENTRYPOINT ["/usr/local/bin/set-env.sh"]
-CMD ["npm", "run-script", "start_docker_dev"]
+ENTRYPOINT ["npm", "run-script", "start_docker_dev"]
 
 
 
