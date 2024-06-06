@@ -10,6 +10,10 @@ export REACT_APP_COMMON_DATA_SERVICE_URL="http://$PUBLIC_IP:9000"
 export REACT_APP_PAYMENT_SERVICE_URL="http://$PUBLIC_IP:9050"
 export REACT_APP_SEARCH_SUGGESTION_SERVICE_URL="http://$PUBLIC_IP:10000"
 
+
+# Ensure the target directory exists
+mkdir -p /usr/src/app/client
+
 # Write the environment variables to a .env file (optional, if needed by the application)
 cat <<EOF > /usr/src/app/client/.env
 REACT_APP_STRIPE_PUBLISH_KEY=pk_test_5dsf4534jkmn4nm345QSQK0WjEJKx1PNH3mJxeUkA45345345Vcxyh5bDuulBildNrp3MWn005xEkAdJ4
