@@ -19,4 +19,18 @@ COPY . .
 #RUN yarn install
 
 # Initiate npm start
-CMD [ "npm", "run-script", "start_docker_dev" ]
+# CMD [ "npm", "run-script", "start_docker_dev" ]
+
+
+# Add a script to set the environment variable dynamically - Sumana
+COPY client/set-env.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/set-env.sh
+
+# Initiate npm start - changed by Sumana
+ENTRYPOINT ["/usr/local/bin/set-env.sh"]
+CMD ["npm", "run-script", "start_docker_dev"]
+
+
+
+
+
