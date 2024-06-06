@@ -2,7 +2,7 @@
 
 echo "Starting set-env.sh script..."
 
-
+# Fetch the metadata service authorization token
 TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
 
 # Fetch the public IP using the metadata service token
@@ -10,9 +10,9 @@ PUBLIC_IP=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/la
 
 echo "Public IP: $PUBLIC_IP"
 
-# Export the public IP as environment variables
+# Define service URLs with dynamic public IP
 export REACT_APP_API_BASE_URL="http://$PUBLIC_IP:port"
-export REACT_APP_AUTHENTICATION_SERVICE_URL="http://$PUBLIC_IP:7000"
+export REACT_APP_AUTHENTICATION_SERVICE_URL="http://$PUBLIC_IP:7000/authenticate"
 export REACT_APP_COMMON_DATA_SERVICE_URL="http://$PUBLIC_IP:9000"
 export REACT_APP_PAYMENT_SERVICE_URL="http://$PUBLIC_IP:9050"
 export REACT_APP_SEARCH_SUGGESTION_SERVICE_URL="http://$PUBLIC_IP:10000"
@@ -36,7 +36,7 @@ REACT_APP_SEARCH_SUGGESTION_SERVICE_PORT=10000
 REACT_APP_COMMON_DATA_SERVICE_IP=$PUBLIC_IP
 
 # Use Public IP in URLs
-REACT_APP_AUTHENTICATION_SERVICE_URL=http://$PUBLIC_IP:7000
+REACT_APP_AUTHENTICATION_SERVICE_URL=http://$PUBLIC_IP:7000/authenticate
 REACT_APP_COMMON_DATA_SERVICE_URL=http://$PUBLIC_IP:9000
 REACT_APP_PAYMENT_SERVICE_URL=http://$PUBLIC_IP:9050
 REACT_APP_SEARCH_SUGGESTION_SERVICE_URL=http://$PUBLIC_IP:10000
