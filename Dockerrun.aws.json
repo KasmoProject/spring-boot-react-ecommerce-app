@@ -1,0 +1,95 @@
+{
+    "AWSEBDockerrunVersion": "3",
+    "containerDefinitions": [
+        {
+            "name": "search-suggestion-service",
+            "image": "public.ecr.aws/e7j4a4j0/springbootproject:search-suggestion-service",
+            "essential": true,
+            "memory": 1024,
+            "portMappings": [
+                {
+                    "hostPort": 10000,
+                    "containerPort": 10000
+                }
+            ]
+        },
+        {
+            "name": "common-data-service",
+            "image": "public.ecr.aws/e7j4a4j0/springbootproject:common-data-service",
+            "essential": true,
+            "memory": 1024,
+            "portMappings": [
+                {
+                    "hostPort": 9000,
+                    "containerPort": 9000
+                }
+            ]
+        },
+        {
+            "name": "authentication-service",
+            "image": "public.ecr.aws/e7j4a4j0/springbootproject:authentication-service",
+            "essential": true,
+            "memory": 1024,
+            "portMappings": [
+                {
+                    "hostPort": 7000,
+                    "containerPort": 7000
+                }
+            ]
+        },
+        {
+            "name": "payment-service",
+            "image": "public.ecr.aws/e7j4a4j0/springbootproject:payment-service",
+            "essential": true,
+            "memory": 1024,
+            "portMappings": [
+                {
+                    "hostPort": 9050,
+                    "containerPort": 9050
+                }
+            ]
+        },
+        {
+            "name": "react-ui",
+            "image": "public.ecr.aws/e7j4a4j0/springbootproject:react-ui",
+            "essential": true,
+            "memory": 2048,
+            "portMappings": [
+                {
+                    "hostPort": 3000,
+                    "containerPort": 3000
+                }
+            ]
+        },
+        {
+            "name": "redis-alpine",
+            "image": "public.ecr.aws/e7j4a4j0/springbootproject:redis-alpine",
+            "essential": true,
+            "memory": 128,
+            "portMappings": [
+                {
+                    "hostPort": 6379,
+                    "containerPort": 6379
+                }
+            ]
+        },
+        {
+            "name": "db",
+            "image": "public.ecr.aws/e7j4a4j0/springbootproject:mysql-8",
+            "essential": true,
+            "memory": 1024,
+            "environment": [
+                {
+                    "name": "MYSQL_ROOT_PASSWORD",
+                    "value": "mypass"
+                }
+            ],
+            "portMappings": [
+                {
+                    "hostPort": 3306,
+                    "containerPort": 3306
+                }
+            ]
+        }
+    ]
+}
